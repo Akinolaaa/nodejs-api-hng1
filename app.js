@@ -1,14 +1,13 @@
 const express = require('express');
+require('dotenv').config();
+const { getIntroduction, simpleArithmetic } = require('./controllers/controller');
 const app = express();
 
-app.get('/', (req, res) => {
-  res.status(200).json({ 
-    "slackUsername": "akinolaaa", 
-    "backend": true, 
-    "age": 22, 
-    "bio": "a full stack web developer and computer science student" 
-  }) 
-});
+app.use(express.json());
+
+app.get('/', getIntroduction);
+
+app.post('/', simpleArithmetic);
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
