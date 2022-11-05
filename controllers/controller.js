@@ -47,7 +47,7 @@ const simpleArithmetic = (req,res) => {
         slackUsername: 'akinolaaa', 
         operation_type: operation_type,
         result: Number(val) 
-      }));
+      }), res.status(400).json({err: "wrong call"}));
 
   } else {
     res.status(200).json({
