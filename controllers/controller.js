@@ -42,12 +42,13 @@ const simpleArithmetic = (req,res) => {
       //
       return response.data.choices[0].text.slice(3);
     }
-    getSolutionFromOpenai()
-      .then((val) => res.status(200).json({
-        slackUsername: 'akinolaaa', 
-        operation_type: operation_type,
-        result: Number(val) 
-      }), res.status(400).json({err: "wrong call"}));
+    getSolutionFromOpenai().then((val) => res.status(200).json({
+      slackUsername: 'akinolaaa', 
+      operation_type: operation_type,
+      result: Number(val) 
+    })).catch((err)=>{
+      res.status(200).json({err})
+    });
 
   } else {
     res.status(200).json({
